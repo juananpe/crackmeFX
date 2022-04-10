@@ -6,12 +6,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
+/*
+        logger.info("Info log message");
+        logger.error("Error log message");
+         */
+
 
 public class LoginController {
+
+        private Logger logger;
 
         @FXML
         private TextField serial;
@@ -84,6 +93,7 @@ public class LoginController {
         }
 
         private boolean rule1(String serial) {
+                logger.debug("The length of the serial should be 19");
                 return serial.length() == 19;
         }
 
@@ -91,8 +101,7 @@ public class LoginController {
 
         @FXML
         void initialize() {
-
-
+                logger = LogManager.getLogger(LoginController.class);
         }
 
         public void setMain(Crackme crackme) {
