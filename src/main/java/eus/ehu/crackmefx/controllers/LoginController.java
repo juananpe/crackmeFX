@@ -22,9 +22,6 @@ public class LoginController {
     private TextField serial;
 
 
-    private Crackme main;
-
-
     @FXML
     void onClick(ActionEvent event) {
         if (check(serial.getText())) {
