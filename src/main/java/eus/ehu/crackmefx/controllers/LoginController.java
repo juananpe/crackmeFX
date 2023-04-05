@@ -87,10 +87,11 @@ public class LoginController {
         logger = LogManager.getLogger(LoginController.class);
         Configurator.setLevel(logger.getName(), Level.ALL);
 
+        // ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF.
         logger.debug("Starting the crackme...");
         logger.info("Info log message");
-        logger.error("Error log message");
         logger.warn("Warn log message");
+        logger.error("Error log message");
     }
 
 }
