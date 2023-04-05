@@ -16,11 +16,9 @@ public class Crackme extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Crackme.class.getResource("login.fxml"));
-        Parent loginUI = (Parent) fxmlLoader.load();
-        LoginController loginCtrl = fxmlLoader.getController();
-        loginCtrl.setMain(this);
-        Scene scene = new Scene(loginUI, 420, 320);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Crackme");
 
         // https://stackoverflow.com/a/30883817/243532
         scene.getStylesheets().add(
