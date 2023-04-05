@@ -1,6 +1,5 @@
 package eus.ehu.crackmefx.controllers;
 
-import eus.ehu.crackmefx.Crackme;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
