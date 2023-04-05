@@ -20,15 +20,17 @@ public class LoginController {
     @FXML
     private TextField serial;
 
+    private void setStyle(String style) {
+        serial.getStyleClass().removeIf(s -> s.equals("error") || s.equals("ok"));
+        serial.getStyleClass().add(style);
+    }
 
     @FXML
     void onClick(ActionEvent event) {
         if (check(serial.getText())) {
-            serial.getStyleClass().removeIf(style -> style.equals("error"));
-            serial.getStyleClass().add("ok");
+            setStyle("ok");
         } else {
-            serial.getStyleClass().removeIf(style -> style.equals("error"));
-            serial.getStyleClass().add("error");
+            setStyle("error");
         }
     }
 
@@ -42,17 +44,20 @@ public class LoginController {
     }
 
     private boolean rule5(String serial) {
-        for (String slice : serial.split("-"))
-            if (slice.chars().distinct().count() != slice.length())
-                return false;
-        return true;
+        String slice = serial.split("-")[1];
+
+        return slice.length() == 7 && slice.indexOf('0') > 0 &&
+                slice.chars().map(c -> c - '0').sum() == 54 &&
+                slice.chars().filter(c -> c == 'F').count() == 2 &&
+                slice.chars().filter(c -> c == '3').count() == 2 ;
     }
 
     private boolean rule4(String serial) {
-        for (int i = 0; i < serial.length(); i++) {
-            if (serial.charAt(i) != serial.charAt(serial.length() - 1 - i)) {
+        char[] first = new char[]{'2', 'E', '1', 'A', '0', 'A', '0', 'U', '3', 'R', '0'};
+        char[] second = new char[]{'z', 'v', 'i', 'u', 't', 'r', 's', 'd', '~', 'f', '|'};
+        for (int i = 0; i < first.length; i++) {
+            if ( (first[i] ^ serial.charAt(i)) != second[i])
                 return false;
-            }
         }
         return true;
     }
@@ -66,17 +71,12 @@ public class LoginController {
     }
 
     private boolean valid(char c) {
-        return (c > '0' && c <= '9') ||
-                (c >= 'A' && c <= 'Z') || c == '-';
+        return (c >= '0' && c <= '9') ||
+                (c >= 'A' && c <= 'Z') || c == '-' || c == '!';
     }
 
     private boolean rule2(String serial) {
-        AtomicBoolean res = new AtomicBoolean(true);
-        List.of(4, 9, 14).forEach(i -> {
-            if (serial.charAt(i) != '-')
-                res.set(false);
-        });
-        return res.get();
+        return serial.charAt(11) == '-' && serial.charAt(18) == '!';
     }
 
     private boolean rule1(String serial) {
