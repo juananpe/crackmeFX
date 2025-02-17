@@ -83,7 +83,7 @@ public class LoginController {
 
     @FXML
     void initialize() {
-        Configurator.setLevel(logger.getName(), Level.WARN);
+        Configurator.setLevel(logger.getName(), Level.ALL);
 
         // ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF.
         logger.debug("Starting the crackme...");
