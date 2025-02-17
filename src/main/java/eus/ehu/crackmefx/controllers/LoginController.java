@@ -92,6 +92,7 @@ public class LoginController {
         logger.info("Info log message");
         logger.warn("Warn log message");
         logger.error("Error log message");
+
     }
 
 }
