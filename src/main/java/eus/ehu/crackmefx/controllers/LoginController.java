@@ -15,7 +15,7 @@ import org.apache.logging.log4j.core.config.Configurator;
 
 public class LoginController {
 
-    private Logger logger;
+    private static final Logger logger = LogManager.getLogger(LoginController.class);
 
     @FXML
     private TextField serial;
@@ -83,9 +83,7 @@ public class LoginController {
 
     @FXML
     void initialize() {
-
-        logger = LogManager.getLogger(LoginController.class);
-        Configurator.setLevel(logger.getName(), Level.ALL);
+        Configurator.setLevel(logger.getName(), Level.WARN);
 
         // ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF.
         logger.debug("Starting the crackme...");
