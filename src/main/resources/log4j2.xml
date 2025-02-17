@@ -1,4 +1,4 @@
-<Configuration status="debug" name="softeng" packages="">
+<Configuration status="warn" name="softeng" packages="">
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout
@@ -7,7 +7,7 @@
     </Appenders>
 
     <Loggers>
-        <Root level="debug">
+        <Root level="warn">
             <AppenderRef ref="console" />
         </Root>
     </Loggers>
